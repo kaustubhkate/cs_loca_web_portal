@@ -1,0 +1,135 @@
+
+<!-- <div>
+    <input placeholder="Reference No" minlength="2" maxlength="10" [(ngModel)]="referenceno"
+    name="referenceno" type="text">
+    <button mat-button (click)="getImage()">Click here</button>
+    <br/>
+</div> -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex="100" fxFlex.gt-xs="25">
+    <mat-card class="default">
+      <mat-card-content fxLayoutAlign="start center" [routerLink]="['/admin/tour']">
+        <div class="p-1">
+          <mat-card-subtitle class="mb-0">Users</mat-card-subtitle>
+          <h3 class="mat-h3--light m-0">{{counterDto.tourCount != null ? counterDto.tourCount : 0}}</h3>
+        </div>
+        <span fxFlex></span>
+        <mat-card class="mat-bg--primary mr-1 mt-0 plr-10 ptb-5" fxLayoutAlign="center center">
+          <mat-icon>trending_up</mat-icon>
+          <span class="ml-2">{{counterDto.tourCount != null ? counterDto.tourCount : 0}}</span>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-xs="25">
+    <mat-card class="default">
+      <mat-card-content fxLayoutAlign="start center" [routerLink]="['/admin/events']">
+        <div class="p-1">
+          <mat-card-subtitle class="mb-0">Drivers</mat-card-subtitle>
+          <h3 class="mat-h3--light m-0">{{counterDto.eventCount != null ? counterDto.eventCount : 0 }}</h3>
+        </div>
+        <span fxFlex></span>
+
+        <mat-card class="mat-bg--accent mr-1 mt-0 plr-10 ptb-5" fxLayoutAlign="center center">
+          <mat-icon>trending_up</mat-icon>
+          <span class="ml-2">{{counterDto.eventCount != null ? counterDto.eventCount : 0 }}</span>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-xs="25">
+      <mat-card class="default">
+        <mat-card-content fxLayoutAlign="start center" [routerLink]="['/admin/students']">
+          <div class="p-1">
+            <mat-card-subtitle class="mb-0">Locations</mat-card-subtitle>
+            <h3 class="mat-h3--light m-0">{{counterDto.candidateCount != null ? counterDto.candidateCount : 0 }}</h3>
+          </div>
+          <span fxFlex></span>
+          <mat-card class="mat-bg--primary mr-1 mt-0 plr-10 ptb-5" fxLayoutAlign="center center">
+            <mat-icon>trending_up </mat-icon>
+            <span class="ml-2">{{counterDto.candidateCount != null ? counterDto.candidateCount : 0 }}</span>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="25">
+      <mat-card class="default">
+        <mat-card-content fxLayoutAlign="start center" [routerLink]="['/admin/staff']">
+          <div class="p-1">
+            <mat-card-subtitle class="mb-0">Reports</mat-card-subtitle>
+            <h3 class="mat-h3--light m-0">{{counterDto.counselorCount != null ? counterDto.counselorCount : 0 }}</h3>
+          </div>
+          <span fxFlex></span>
+          <mat-card class="mat-bg--accent mr-1 mt-0 plr-10 ptb-5" fxLayoutAlign="center center">
+            <mat-icon>trending_up</mat-icon>
+            <span class="ml-2">{{counterDto.counselorCount != null ? counterDto.counselorCount : 0 }}</span>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex="100" fxFlex.gt-xs="25">
+    <mat-card class="default">
+      <mat-card-content fxLayoutAlign="start center" [routerLink]="['/admin/user']">
+        <div class="p-1">
+          <mat-card-subtitle class="mb-0">Bin Type</mat-card-subtitle>
+          <h3 class="mat-h3--light m-0">{{counterDto.userCount != null ? counterDto.userCount : 0 }}</h3>
+        </div>
+        <span fxFlex></span>
+        <mat-card class="mat-bg--accent mr-1 mt-0 plr-10 ptb-5" fxLayoutAlign="center center">
+          <mat-icon>trending_up</mat-icon>
+          <span class="ml-2">{{counterDto.userCount != null ? counterDto.userCount : 0 }}</span>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-xs="25">
+    <mat-card class="default">
+      <mat-card-content fxLayoutAlign="start center" [routerLink]="['/admin/vendor']">
+        <div class="p-1">
+          <mat-card-subtitle class="mb-0">Prop. A/c</mat-card-subtitle>
+          <h3 class="mat-h3--light m-0">{{counterDto.vendorCount != null ? counterDto.vendorCount : 0 }}</h3>
+        </div>
+        <span fxFlex></span>
+        <mat-card class="mat-bg--primary mr-1 mt-0 plr-10 ptb-5" fxLayoutAlign="center center">
+          <mat-icon>trending_up </mat-icon>
+          <span class="ml-2">{{counterDto.vendorCount != null ? counterDto.vendorCount : 0 }}</span>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-xs="25">
+    <mat-card class="default">
+      <mat-card-content fxLayoutAlign="start center" [routerLink]="['/admin/clinicinfo']">
+        <div class="p-1">
+          <mat-card-subtitle class="mb-0">Bin Destination</mat-card-subtitle>
+          <h3 class="mat-h3--light m-0">{{counterDto.clinicCount != null ? counterDto.clinicCount : 0 }}</h3>
+        </div>
+        <span fxFlex></span>
+        <mat-card class="mat-bg--accent mr-1 mt-0 plr-10 ptb-5" fxLayoutAlign="center center">
+          <mat-icon>trending_up</mat-icon>
+          <span class="ml-2">{{counterDto.clinicCount != null ? counterDto.clinicCount : 0 }}</span>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-xs="25">
+    <mat-card class="default">
+      <mat-card-content fxLayoutAlign="start center" [routerLink]="['/admin/teacher']">
+        <div class="p-1">
+          <mat-card-subtitle class="mb-0">Teachers</mat-card-subtitle>
+          <h3 class="mat-h3--light m-0">{{counterDto.teacherCount != null ? counterDto.teacherCount : 0 }}</h3>
+        </div>
+        <span fxFlex></span>
+        <mat-card class="mat-bg--primary mr-1 mt-0 plr-10 ptb-5" fxLayoutAlign="center center">
+          <mat-icon>trending_up</mat-icon>
+          <span class="ml-2">{{counterDto.teacherCount != null ? counterDto.teacherCount : 0 }}</span>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 
+<!-- <img *ngIf="imageData!=null" src="data:image/png;base64,{{imageData?.img}}">
+<p styale="width:70%;">{{imageData?.img}}</p> -->

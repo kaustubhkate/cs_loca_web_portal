@@ -1,0 +1,206 @@
+<div fxLayout="column">
+  <div fxLayout.lt-lg="column" fxLayout="row">
+    <div fxFlex="100" fxFlex.gt-md="100" fxLayoutAlign="stretch">
+
+      <mat-card class="profile-sidebar mb-1 pb-0">
+        <div class="propic text-center">
+          <img [src]="url" alt="">
+        </div>
+        <div class="profile-title text-center mb-1">
+          <div class="main-title">
+            <b>{{editUser?.name}}</b>
+          </div>
+          <div class="subtitle mb-05">{{editUser?.email}}</div>
+          <div class="text-muted"></div>
+        </div>
+
+        <div class="profile-nav">
+          <mat-nav-list>
+            <mat-list-item type="button" (click)="edit(true)">
+              <mat-icon>home</mat-icon>
+              Overview
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item routerLinkActive="list-item-active">
+              <mat-icon>settings</mat-icon>
+              Settings
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item routerLinkActive="list-item-active">
+              <mat-icon>content_paste</mat-icon>
+              Blank
+            </mat-list-item>
+          </mat-nav-list>
+        </div>
+      </mat-card>
+      <mat-card style="width: 80%;">
+        <mat-tab-group>
+          <mat-tab label="Overview">
+            <mat-card-content class="mt-1">
+              <form [formGroup]="userForm" class="mt-1">
+                <button class="mat-icon-button ml-1" style="float: right" mattooltip="Udpate Profile" type="button"
+                  (click)="edit(false)">
+                  <span class="mat-button-wrapper">
+                    <mat-icon class="mat-icon material-icons" color="primary" role="img" aria-hidden="true">create
+                    </mat-icon>
+                  </span>
+
+                </button>
+
+                <div fxLayout="row" fxLayoutWrap="wrap">
+
+                  <div fxFlex="100" fxFlex.gt-md="100" ngClass.gt-md="pr-1">
+
+                    <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column" style="margin-top: 5px">
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+
+                        <input matInput placeholder="Email Id" type="text" minlength="5" maxlength="40"
+                          formControlName="email" required readonly>
+                        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                          <mat-error *ngIf="email.errors.required">
+                            Email id is required.
+                          </mat-error>
+                          <mat-error *ngIf="email.errors.email">
+                            Please enter valid mail.
+                          </mat-error>
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                        <input matInput placeholder="Username" type="text" minlength="5" maxlength="40"
+                          formControlName="username" required readonly>
+                        <mat-error *ngIf="username.invalid && (username.dirty || username.touched)"
+                          class="alert alert-danger">
+                          <mat-error *ngIf="username.errors.required">
+                            Email id is required.
+                          </mat-error>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column">
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                        <input matInput placeholder="First Name" type="text" minlength="2" maxlength="30"
+                          formControlName="firstname" appSpecialCharacter required [readonly]="isReadonly">
+                        <mat-error *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+                          class="alert alert-danger">
+                          <mat-error *ngIf="firstname.errors.required">
+                            First name is required.
+                          </mat-error>
+                          <mat-error *ngIf="firstname.errors.minlength">
+                            First name must be at least 3 characters long.
+                          </mat-error>
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                        <input matInput placeholder="Last Name" type="text" minlength="2" maxlength="30"
+                          formControlName="lastname" appSpecialCharacter required [readonly]="isReadonly">
+                        <mat-error *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+                          class="alert alert-danger">
+                          <mat-error *ngIf="lastname.errors.required">
+                            Last name is required.
+                          </mat-error>
+                          <mat-error *ngIf="lastname.errors.minlength">
+                            Last name must be at least 3 characters long.
+                          </mat-error>
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                        <input matInput placeholder="Contact No" appPhoneMask type="text" formControlName="contactno"
+                          minlength=14 required [readonly]="isReadonly">
+                        <mat-error *ngIf="contactno.invalid && (contactno.dirty || contactno.touched)"
+                          class="alert alert-danger">
+                          <mat-error *ngIf="contactno.errors.required">
+                            Contact number is required.
+                          </mat-error>
+                          <mat-error *ngIf="contactno.errors.minlength">
+                            Please enter valid Contact number
+                          </mat-error>
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                        <input matInput [matDatepicker]="picker1" placeholder="Date of Birth" [max]="maxDate"
+                          formControlName="dob" required readonly>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="alert alert-danger">
+                          <mat-error *ngIf="dob.errors.required">
+                            Date of Birth is required.
+                          </mat-error>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column">
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                        <input matInput placeholder="Address Line 1" maxlength="50" type="text"
+                          formControlName="streetno" appSpecialCharacter [readonly]="isReadonly">
+                      </mat-form-field>
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                        <input matInput placeholder="Address Line 2" maxlength="60" type="text"
+                          formControlName="streetname" appSpecialCharacter [readonly]="isReadonly">
+                      </mat-form-field>
+                    </div>
+                    <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column">
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                        <input matInput placeholder="City" maxlength="30" type="text" formControlName="city"
+                          appSpecialCharacter [readonly]="isReadonly">
+                      </mat-form-field>
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="22">
+                        <input matInput placeholder="Postal code" maxlength="10" type="text"
+                          formControlName="postalcode" appSpecialCharacter [readonly]="isReadonly">
+                      </mat-form-field>
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                        <mat-select placeholder="Select Country" (selectionChange)="onSelect($event.value)"
+                          formControlName="country">
+                          <mat-option>None</mat-option>
+                          <mat-option *ngFor="let obj of countries" [value]="obj">
+                            {{ obj }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field fxFlex="100" fxFlex.gt-xs="22">
+                        <mat-select placeholder="Select State" formControlName="province">
+                          <mat-option>None</mat-option>
+                          <mat-option *ngFor="let obj of states" [value]="obj.name">
+                            {{ obj.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div fxLayoutGap="5px" *ngIf="!isReadonly">
+                      <mat-form-field fxFlex="100">
+                        <input matInput #file2 placeholder="Choose image" class="pointer--cursor"
+                          (click)="upload2.click()">
+                        <input [hidden]="true" type="file" name="file" #upload2 (change)="uploadFile($event, file2)"
+                          accept=".jpg,.png,.gif,.jpeg" />
+                      </mat-form-field>
+                      <button type="button" mat-button color="accent" mat-mini-fab (click)="upload2.click()">
+                        <mat-icon>attachment</mat-icon>
+                      </button>
+
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                  <div fxFlex="100" fxFlex.gt-md="100" ngClass.gt-md="pr-1">
+                    <div>
+                      <label class="mr-1 mat-body-3">Gender:</label>
+                      <mat-radio-group fxFlex="100" fxLayoutGap=".5rem" formControlName="gender" required>
+                        <mat-radio-button value="M">Male</mat-radio-button>
+                        <mat-radio-button value="F">Female</mat-radio-button>
+                        <mat-radio-button value="O">Other</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="mt-1">
+                  <button mat-raised-button *ngIf="!isReadonly" color="primary" type="submit" class="mr-1"
+                    (click)="confirmAdd()" [disabled]="userForm.invalid">Submit</button>
+                </div>
+              </form>
+            </mat-card-content>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+
+    </div>
+  </div>

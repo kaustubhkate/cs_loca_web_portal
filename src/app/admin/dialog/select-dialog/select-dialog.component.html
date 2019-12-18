@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Add {{title}}</h1>
+<div mat-dialog-content>
+  <form class="mat-dialog-content">
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Enter name" [formControl]="name" type="text" required>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="true" (click)="confirmAdd()" class="mr-1">Submit</button>
+      <button mat-raised-button color="accent"  type="button" (click)="onNoClick()" tabindex="" x="-1">Cancel</button>
+    </div>
+    <br/>
+  </form>
+</div>

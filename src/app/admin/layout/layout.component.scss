@@ -1,0 +1,71 @@
+@import '../../../themes/common/common.scss';
+
+.sidenav__container {
+  height: 100vh;
+  background: #ebebeb !important;
+    
+    .notification__panel {
+        width: 300px;
+        min-width: 300px;
+        max-width: 300px;
+
+        .mat-slide-toggle {
+            flex: 1;
+
+            .mat-slide-toggle-label {
+                order: 1;
+
+                .mat-slide-toggle-bar {
+                    order: 2;
+                }
+                .mat-slide-toggle-content {
+                    -webkit-box-flex: 1;
+                            -ms-flex: 1;
+                                flex: 1;
+                }
+            }
+        }
+    }
+}
+.right__container {
+    padding: 0.33em;
+    height: 83% !important;;
+   
+
+    @include respond-to('x-small') {
+        padding: 0.22rem 0 !important;
+    }
+}
+
+.mat-header-row {
+    top: 0;
+    position: sticky;
+    z-index: 1;
+    color:white;
+}
+
+.mat-header-cell {
+    font-size: 1rem;
+    background: #2E3234 !important;
+    color: #ffffff !important;
+}
+
+.mat-sort-header-arrow{
+    background: #2E3234 !important;
+    color: #ffffff !important;
+}
+
+.mat-dialog-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333333;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .mat-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333333;
+    font-family: 'Lato', sans-serif;
+  }
+

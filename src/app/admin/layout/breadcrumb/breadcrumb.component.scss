@@ -1,0 +1,21 @@
+.breadcrumb-bar{
+
+  background: #ffffff !important;
+  margin: 5px 0 0 0;
+  box-shadow: none;
+
+  
+  a {
+    color: #333333 !important;
+  }
+  ul{
+    padding: 0.5em 0.66em;
+    margin: 0;
+
+    li {
+      font-size: 14px;
+      display: inline;
+      list-style-type: none;
+    }
+  }
+}

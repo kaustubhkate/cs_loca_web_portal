@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>View Role</h1>
+<div mat-dialog-content>
+        <div class="form">
+            <mat-form-field color="accent">
+              <input matInput #input class="form-control" placeholder="Role Name" [(ngModel)]="data.role" name="role" readonly >
+              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+      
+          <div class="form">
+            <mat-form-field color="accent">
+              <textarea matInput #input class="form-control" placeholder="Description" [(ngModel)]="data.description" name="description" readonly ></textarea>
+              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row" fxLayoutWrap="wrap">
+            <div fxFlex="100" fxFlex.gt-md="100" ngClass.gt-md="pr-1">
+              <div class="form">
+                <label class="mr-1 mat-body-3">Status:</label>
+                <mat-radio-group fxFlex="100" #input  class="form-control" fxLayoutGap=".5rem" name="status" [(ngModel)]="data.status" disabled>
+                  <mat-radio-button value="Y">Active</mat-radio-button>
+                  <mat-radio-button value="N">Inactive</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+
+          <div mat-dialog-actions>
+              <button mat-raised-button color="accent" (click)="onNoClick()" tabindex="" x="-1">Cancel</button>
+            </div>
+            <br/>
+</div>
+

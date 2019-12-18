@@ -1,0 +1,76 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <div class="mt-1">
+        <!-- <button mat-raised-button color="accent" class="mr-1" (click)="refresh()">View Roles</button> -->
+        <button mat-raised-button color="accent" class="mr-1" (click)="addRoleDialog()">Add Role</button>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column">
+      <div>
+        <mat-form-field fxFlex="100" fxFlex.gt-xs="40" color="accent">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Role">
+        </mat-form-field>
+        <button mat-icon-button (click)="refresh()">
+          <mat-icon matTooltip="Refresh" matTooltipPosition="right">refresh</mat-icon>
+        </button>
+      </div>
+
+      <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+          Please wait.
+        </div>
+      </div>
+
+      <mat-table #table [dataSource]="dataSource" class="example-table" matSort matSortActive="id" matSortDisableClear
+        matSortDirection="desc">
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Role Name</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+          <mat-cell *matCellDef="let element"> -- </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+          <mat-cell  *matCellDef="let element" [style.color]="element.is_deleted ? 'red' : 'green'" >{{element.is_deleted ? 'Inactive' : 'Active'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>
+            <button mat-icon-button color="primary" (click)="addRoleDialog()">
+              <mat-icon aria-label="Example icon-button with a heart icon" matTooltip="Add" matTooltipPosition="right">add</mat-icon>
+            </button>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i=index;">
+            <button mat-icon-button color="accent" (click)="startEdit(element)"
+              matTooltip="Edit">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="deleteItem(i, element.id, element.name, 'role')" matTooltip="Delete">
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+
+      <div class="no-results" [style.display]="resultsLength == 0 ? '' : 'none'">
+        No results
+      </div>
+
+      <mat-paginator #paginator [length]="resultsLength" [pageIndex]="0" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100, 1000]"
+        ></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

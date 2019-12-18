@@ -1,0 +1,218 @@
+<div fxLayout="column">
+  <div fxLayout.lt-lg="column" fxLayout="row">
+    <div fxFlex="100" fxFlex.gt-md="100" fxLayoutAlign="stretch">
+      <mat-card fxFlex>
+        <mat-card-header>
+          <mat-card-title>{{title}} User</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mb-0 px-1">
+          <div class="example-loading-shade" *ngIf="isLoadingResults">
+            <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+          </div>
+          <form [formGroup]="userForm" class="mt-1">
+            <div fxLayout="row" fxLayoutWrap="wrap">
+              <div fxFlex="100" fxFlex.gt-md="100" ngClass.gt-md="pr-1">
+                <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column">
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <input matInput placeholder="Email Id" type="text" minlength="5" maxlength="40"
+                      formControlName="email" required>
+                    <mat-error *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                      <mat-error *ngIf="email.errors.required">
+                        Email id is required.
+                      </mat-error>
+                      <mat-error *ngIf="email.errors.email">
+                        Please enter valid mail.
+                      </mat-error>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <input matInput placeholder="First Name" type="text" minlength="2" maxlength="30"
+                      formControlName="firstname" appSpecialCharacter required>
+                    <mat-error *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+                      class="alert alert-danger">
+                      <mat-error *ngIf="firstname.errors.required">
+                        First name is required.
+                      </mat-error>
+                      <mat-error *ngIf="firstname.errors.minlength">
+                        First name must be at least 3 characters long.
+                      </mat-error>
+                    </mat-error>
+                  </mat-form-field>
+                  <!-- <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <input matInput placeholder="Username" type="text" minlength="5" maxlength="40"
+                      formControlName="username" required>
+                    <mat-error *ngIf="username.invalid && (username.dirty || username.touched)"
+                      class="alert alert-danger">
+                      <mat-error *ngIf="username.errors.required">
+                        Email id is required.
+                      </mat-error>
+                    </mat-error>
+                  </mat-form-field> -->
+                </div>
+                <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column">
+                  
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <input matInput placeholder="Last Name" type="text" minlength="2" maxlength="30"
+                      formControlName="lastname" appSpecialCharacter required>
+                    <mat-error *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+                      class="alert alert-danger">
+                      <mat-error *ngIf="lastname.errors.required">
+                        Last name is required.
+                      </mat-error>
+                      <mat-error *ngIf="lastname.errors.minlength">
+                        Last name must be at least 3 characters long.
+                      </mat-error>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <input matInput placeholder="Contact No"  type="text" formControlName="contactno" maxlength="20"
+                       required>
+                      <mat-error *ngIf="contactno.invalid && (contactno.dirty || contactno.touched)"
+                      class="alert alert-danger">
+                      <mat-error *ngIf="contactno.errors.required">
+                        Contact number is required.
+                      </mat-error>
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['contactno'].hasError('minLength') || userForm.controls['contactno'].hasError('pattern') ">
+                      Please enter valid contact number
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column">
+<!--                  
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                    <input matInput [matDatepicker]="picker1" placeholder="Date of Birth" [max]="maxDate"
+                      formControlName="dob" required readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="alert alert-danger">
+                      <mat-error *ngIf="dob.errors.required">
+                        Date of Birth is required.
+                      </mat-error>
+                    </mat-error>
+                  </mat-form-field> -->
+                  <!-- <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <mat-select placeholder="Select Roles" formControlName="roles" required>
+                      <mat-option *ngFor="let topping of userroles" [value]="topping.id">{{topping.name}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="myroles.invalid && (myroles.dirty || myroles.touched)" class="alert alert-danger">
+                      <mat-error *ngIf="myroles.errors.required">
+                        Role is required
+                      </mat-error>
+                    </mat-error>
+                  </mat-form-field> -->
+
+                  <!-- multiple role added -->
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <mat-select placeholder="Select Roles" formControlName="roles" multiple>
+                      <mat-select-trigger>
+                        {{userForm.value.roles ? userForm.value.roles[0] : ''}}
+                        <span *ngIf="userForm.value.roles?.length > 1" class="example-additional-selection">
+                          (+{{userForm.value.roles.length - 1}} others)
+                        </span>
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let userAccess of userroles" [value]="userAccess.name">{{userAccess.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <input matInput placeholder="password"  type="text" formControlName="password" 
+                       required [readonly]="isUpdate">
+                      <mat-error *ngIf="password.invalid && (password.dirty || password.touched)"
+                      class="alert alert-danger">
+                      <mat-error *ngIf="password.errors.required">
+                        Password is required.
+                      </mat-error>
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+               <!-- <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column">
+                   <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <input matInput placeholder="Street No" maxlength="50" type="text" formControlName="streetno"
+                      appSpecialCharacter>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="48.50">
+                    <input matInput placeholder="Street Name" maxlength="60" type="text" formControlName="streetname"
+                      appSpecialCharacter>
+                  </mat-form-field> 
+                </div>
+                <div fxLayoutAlign.gt-xs="space-between start" fxLayout.xs="column">
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                    <input matInput placeholder="City" maxlength="30" type="text" formControlName="city"
+                      appSpecialCharacter>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="22">
+                    <input matInput placeholder="Postal code" maxlength="10" type="text" formControlName="postalcode"
+                      appSpecialCharacter>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="23">
+                    <mat-select placeholder="Select Country" (selectionChange)="onSelect($event.value)"
+                      formControlName="country">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let obj of countries" [value]="obj">
+                        {{ obj }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="100" fxFlex.gt-xs="22">
+                    <mat-select placeholder="Select State" formControlName="province">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let obj of states" [value]="obj.name">
+                        {{ obj.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div> -->
+                <!-- Upload Image -->
+               <!-- <div fxLayoutGap="5px">
+                  <mat-form-field fxFlex="100">
+                    <input matInput #file2 placeholder="Choose image" class="pointer--cursor" (click)="upload2.click()">
+                    <input [hidden]="true" type="file" name="file" #upload2 (change)="uploadFile($event, file2)"
+                      accept=".jpg,.png,.gif,.jpeg" />
+                  </mat-form-field>
+                  <button type="button" mat-button color="accent" mat-mini-fab (click)="upload2.click()">
+                    <mat-icon>attachment</mat-icon>
+                  </button>
+                  <div class="profile__pic" fxFlex="100" fxFlex.gt-xs="24">
+                    <img [src]="url" height="150" width=150 alt="User Image" class="user">
+                  </div>
+                </div>-->
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutWrap="wrap">
+              <div fxFlex="100" fxFlex.gt-md="100" ngClass.gt-md="pr-1">
+                <!-- <div>
+                  <label class="mr-1 mat-body-3">Gender:</label>
+                  <mat-radio-group fxFlex="100" fxLayoutGap=".5rem" formControlName="gender" required>
+                    <mat-radio-button value="M">Male</mat-radio-button>
+                    <mat-radio-button value="F">Female</mat-radio-button>
+                    <mat-radio-button value="O">Other</mat-radio-button>
+                  </mat-radio-group>
+                </div> -->
+              </div>
+            </div>
+            <br />
+            <div fxLayout="row" fxLayoutWrap="wrap">
+              <div fxFlex="100" fxFlex.gt-md="100" ngClass.gt-md="pr-1">
+                <div>
+                  <label class="mr-1 mat-body-3">&nbsp;Status:</label>
+                  <mat-radio-group fxFlex="100" fxLayoutGap=".5rem" formControlName="status" required (change)="onChange(editedUserId)">
+                    <mat-radio-button [value]="!userForm.value.status" >Active</mat-radio-button>
+                    <mat-radio-button [value]="userForm.value.status" >Inactive</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="mt-1">
+           
+              <button mat-raised-button color="primary" type="submit" class="mr-1" (click)="confirmAdd()"
+                [disabled]="!userForm.valid || disableButton">{{disableButton? 'Saving...': 'Save'}}</button>
+                <button mat-raised-button color="accent" (click)="goBack()" class="mr-1">Cancel</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>

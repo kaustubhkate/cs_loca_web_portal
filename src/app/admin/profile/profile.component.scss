@@ -1,0 +1,85 @@
+// table {
+//   font-family: 'Lato', sans-serif;
+//   border-collapse: collapse;
+//   width: 100%;
+// }
+
+// td, th {
+//   border: 1px solid #dddddd;
+//   text-align: left;
+//   padding: 8px;
+//   height:25px;
+// }
+
+
+// .example-loading-shade {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 50px;
+//   right: 0;
+//   background: rgba(64, 63, 66, 0.15);
+//   z-index: 1;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .mat-card-title {
+//   font-size: 1.25rem;
+//   font-weight: bold;
+//   color: #333333;
+//   font-family: 'Lato', sans-serif;
+// }
+
+// .mat-card {
+//   font-family: 'Lato', sans-serif;
+//   box-shadow: none;
+// }
+
+/*------- Profile ------*/
+.profile-sidebar {
+  box-sizing: border-box;
+  flex: 1 1 300px;
+    box-sizing: border-box;
+    max-width: 300px;
+    min-width: 300px;
+}
+.profile-sidebar .propic {
+  width: 100%;
+  margin-bottom: 6px;
+}
+.profile-sidebar .propic img {
+  width: 50%;
+  height: auto;
+  border-radius: 50%;
+}
+.profile-sidebar .profile-title .main-title {
+  font-size: 1.5rem;
+}
+ .profile-nav {
+  margin-left: -24px;
+  margin-right: -24px;
+}
+.profile-sidebar .profile-nav .mat-list-item .mat-icon {
+  margin-right: 8px;
+}
+.profile-actions{
+  place-content: center;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+}
+.mat-form-field {
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.125;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+// .profile-nav{
+//   flex: 1 1 calc(100% - 300px);
+//   box-sizing: border-box;
+//   min-width: calc(100% - 300px);
+// }
